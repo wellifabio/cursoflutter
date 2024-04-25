@@ -9,7 +9,7 @@
 - Baseada em C
 
 ## Ambiente de desenvolvimento
-- 1 Baixar e Instalar o **VsCode**
+- 1 Baixar e Instalar **Git**, **AndroidStudio** e **VsCode**
 - 2 Instalar o Plugin **Flutter**
 - 3 Siga o **[passo a passo da página oficial](https://docs.flutter.dev/get-started/install/windows/desktop)** para instalação com Windows.
   - [Vídeo um pouco antigo mas funcional con instruções de instalação + Curso completo](https://www.youtube.com/watch?v=Um-OCajPvvQ&list=PL5EmR7zuTn_Yu_YV2pT0h0843vRGiTMtx&index=3).
