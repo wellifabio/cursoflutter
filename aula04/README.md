@@ -22,7 +22,10 @@ main() {
 ```
 - O resultado será um Olá Mundo.<br>![Alo mundo](./alomundo.png)
 
-### Materiais Widget
+## Estados [Global, Local]
+- StatelessWidget - São Widgets que não mudam seu estado
+- StatefulWidget - São Widgets que mudam o estado
+### Widget, Materiais
 Cada componente/ferramenta que utilizamos no flutter recebe esta classificação **Widget**, temos um grande volume de materiais no site **[material.io](https://m3.material.io/develop/flutter)**
 
 - Alterando o app, utilizando o material **Scaffold**
@@ -43,3 +46,33 @@ main() {
 }
 ```
 ![App versão inicial](./app01.png)
+
+## Camadas arquitetônicas
+Flutter foi projetado como um sistema extensível em camadas. Ele existe como uma série de bibliotecas independentes, cada uma dependendo da camada subjacente. Nenhuma camada tem acesso privilegiado à camada abaixo, e cada parte do nível da estrutura é projetada para ser opcional e substituível.
+![Hierarquia do framework](https://docs.flutter.dev/assets/images/docs/arch-overview/archdiagram.png)
+
+A seguir temos um exemplo com StateLessWidget passando o parâmetro título ao chamar a classe
+```dart
+import 'package:flutter/material.dart';
+
+main() {
+  runApp(const MyApp(title:'Calculadora de IMC'));
+}
+
+class MyApp extends StatelessWidget {
+  final String? title;
+  const MyApp({super.key, this.title});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar:
+            AppBar(title: Text(this.title.toString()), backgroundColor: Colors.blueGrey),
+        body: const Center(
+            child: Text('Digite seu peso e sua altura:',
+                style: TextStyle(fontSize: 30, color: Colors.black),)),
+      ),
+    );
+  }
+}
+```
