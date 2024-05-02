@@ -20,4 +20,8 @@ main() {
   ));
 }
 ```
-- O resultado será um Olá Mundo.
+- O resultado será um Olá Mundo.<br>![Alo mundo](./alomundo.png)
+
+### Widget
+Cada componente/ferramenta que utilizamos no flutter recebe esta classificação **Widget**, temos um grande volume de materiais no site **[material.io](https://m3.material.io/develop/flutter)**
+
