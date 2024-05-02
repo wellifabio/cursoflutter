@@ -3,6 +3,9 @@
 ### Listas, Listas de objetos
 Ainda na [play list do professor Daves](https://www.youtube.com/watch?v=4kn7wH9nvvE&list=PL5EmR7zuTn_Yu_YV2pT0h0843vRGiTMtx&index=25) vamos ver como manipular listas.
 
+### Exemplo 01
+Criar uma lista de objetos e percorre-la com um laço.
+
 ```dart
 void main(){
   List<Produto> produtos = [
@@ -15,18 +18,15 @@ void main(){
   produtos.add(new Produto(6,'Queijo',28.9,'Provolone'));
   produtos.forEach((p)=>print(p.toJSON()));
 }
-//Classe com construtores
+
 class Produto{
-  
   int id = 0;
   String nome = '';
   String? descricao = '';
   double preco = 0;
   
-  //Construtor
   Produto(this.id, this.nome, this.preco, [this.descricao]);
   
-  //Métodos
   String toJSON(){
     String result = '{';
     result += '\n\t"id":${this.id},';
