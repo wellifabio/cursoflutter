@@ -22,6 +22,24 @@ main() {
 ```
 - O resultado será um Olá Mundo.<br>![Alo mundo](./alomundo.png)
 
-### Widget
+### Materiais Widget
 Cada componente/ferramenta que utilizamos no flutter recebe esta classificação **Widget**, temos um grande volume de materiais no site **[material.io](https://m3.material.io/develop/flutter)**
 
+- Alterando o app, utilizando o material **Scaffold**
+
+```dart
+import 'package:flutter/material.dart';
+
+main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+          title: Text('Calculadora de IMC'), backgroundColor: Colors.blueGrey),
+      body: Center(
+          child: Text('Texto central',
+              style: TextStyle(fontSize: 30, color: Colors.black))),
+    ),
+  ));
+}
+```
+![App versão inicial](./app01.png)
