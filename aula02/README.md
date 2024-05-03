@@ -1,7 +1,7 @@
 # Linguagem Dart
 A liguagem dart já é instalada junto com o Flutter SDK
 ## Site oficial do Dart com a opção **Try**
-- https://dar.dev/
+- https://dart.dev/
 ## Testar online
 Para executar comandos básicos de forma online podemos acessar via https://dartpad.dev/
 
