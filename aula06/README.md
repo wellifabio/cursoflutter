@@ -131,3 +131,72 @@ Esta lista é estática e as imagens estão remotas, acessadas através da URL.
 
 ## Atividades
 Vamos replicar este aplicativo e criar outro como exercício com uma lista de produtos, animais ou plantas, use sua criatividade para escolher o tema.
+
+# Aicionando interatividade a Lista
+Agora, vamos marcar em uma sublista os itens selecionados através de um longPress, para isso vamos voltar a trabalhar com os **estados** e o tipo da página passa a ser **StatefulWidget**<br>[Créditos: Assista esta vídeo aula no youtube](https://youtu.be/6aehTIdBnyQ?si=g7ZZaDHepd5TDbnx)
+
+- ./pages/pessoas_page.dart
+```dart
+import 'package:flutter/material.dart';
+import 'package:listadetalhes/models/pessoa.dart';
+import 'package:listadetalhes/repositories/pessoa_repository.dart';
+
+class PessoasPage extends StatefulWidget {
+  const PessoasPage({super.key});
+
+  @override
+  State<PessoasPage> createState() => _PessoasPageState();
+}
+
+class _PessoasPageState extends State<PessoasPage> {
+  @override
+  Widget build(BuildContext context) {
+    final tabela = PessoaRepository.tabela;
+    List<Pessoa> selecionadas = [];
+
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Pessoas'),
+        ),
+        body: ListView.separated(
+            itemBuilder: (BuildContext context, int indice) {
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage:
+                      Image.network(tabela[indice].avatar.toString()).image,
+                  radius: 30,
+                ),
+                contentPadding: const EdgeInsets.all(8),
+                title: Text(tabela[indice].nome),
+                subtitle: Text(tabela[indice].diagnostico()),
+                trailing: Text(
+                  'IMC: ${tabela[indice].imc().toStringAsFixed(2)}',
+                  style: TextStyle(
+                    color: tabela[indice].imc() < 18.5 ||
+                            tabela[indice].imc() > 29.9
+                        ? Colors.red
+                        : Colors.green,
+                    fontSize: 18,
+                  ),
+                ),
+                selected: selecionadas.contains(tabela[indice]),
+                selectedTileColor: Colors.yellow[100],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                onLongPress: () => {
+                  setState(() {
+                    selecionadas.contains(tabela[indice])
+                        ? selecionadas.remove(tabela[indice])
+                        : selecionadas.add(tabela[indice]);
+                  })
+                },
+              );
+            },
+            padding: const EdgeInsets.all(16),
+            separatorBuilder: (_, ___) => const Divider(),
+            itemCount: tabela.length));
+  }
+}
+
+```
