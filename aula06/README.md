@@ -146,7 +146,14 @@ Agora, vamos marcar em uma sublista os itens selecionados através de um longPre
 <table>
 <tr>
 <td>
-- ./pages/pessoas_page.dart
+./pages/pessoas_page.dart
+</td>
+<td>
+Imagem
+</td>
+</tr>
+<tr>
+<td>
 
 ```dart
 import 'package:flutter/material.dart';
@@ -214,6 +221,9 @@ class _PessoasPageState extends State<PessoasPage> {
 ```
 </td>
 <td>
+
 ![Imagem3](./print3.png)
+
 </td>
 <tr>
+</table>
