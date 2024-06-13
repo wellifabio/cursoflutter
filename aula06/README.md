@@ -34,10 +34,70 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+- ./models/pessoa.dart
+```dart
+class Pessoa {
+  String nome;
+  int idade;
+  double altura;
+  double peso;
+  String? avatar;
+
+  Pessoa(this.nome, this.idade, this.altura, this.peso, [this.avatar]);
+
+  double imc() {
+    return peso / (altura * altura);
+  }
+
+  String diagnostico() {
+    if (imc() < 18.5) {
+      return 'Abaixo do peso';
+    } else if (imc() < 24.9) {
+      return 'Peso normal';
+    } else if (imc() < 29.9) {
+      return 'Sobrepeso';
+    } else if (imc() < 34.9) {
+      return 'Obesidade grau 1';
+    } else if (imc() < 39.9) {
+      return 'Obesidade grau 2';
+    } else {
+      return 'Obesidade grau 3';
+    }
+  }
+}
+```
+- ./repositories/pessoas_repository.dart
+```dart
+import 'package:listadetalhes/models/pessoa.dart';
+
+class PessoaRepository {
+  static List<Pessoa> tabela = [
+    Pessoa('Marcela Silva', 44, 1.75, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli1.png'),
+    Pessoa('João da Silva', 33, 1.80, 80.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli2.png'),
+    Pessoa('Maria da Silva', 22, 1.65, 44.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli3.png'),
+    Pessoa('Ana da Silva', 55, 1.70, 110.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli4.png'),
+    Pessoa('José da Silva', 66, 1.60, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli5.png'),
+    Pessoa('Andrea da Silva', 77, 1.90, 90.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli6.png'),
+    Pessoa('Paulo da Silva', 88, 1.75, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli7.png'),
+    Pessoa('Mariana da Silva', 99, 1.75, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli8.png'),
+  ];
+
+  void add(Pessoa pessoa) {
+    tabela.add(pessoa);
+  }
+
+  void remove(Pessoa pessoa) {
+    tabela.remove(pessoa);
+  }
+
+  List<Pessoa> get pessoas => tabela;
+}
+```
+
 - ./pages/pessoas_page.dart
 ```dart
 import 'package:flutter/material.dart';
-import 'package:listadetalhes/repositories/pessoa_repository.dart';
+import 'package:listadetalhes/repositories/pessoas_repository.dart';
 
 class PessoasPage extends StatelessWidget {
   const PessoasPage({super.key});
@@ -74,77 +134,7 @@ class PessoasPage extends StatelessWidget {
   }
 }
 ```
-- ./models/pessoa.dart
-```dart
-iclass Pessoa {
-  String nome;
-  int idade;
-  double altura;
-  double peso;
-  String? avatar;
 
-  Pessoa(this.nome, this.idade, this.altura, this.peso, [this.avatar]);
-
-  double imc() {
-    return peso / (altura * altura);
-  }
-
-  String diagnostico() {
-    if (imc() < 18.5) {
-      return 'Abaixo do peso';
-    } else if (imc() < 24.9) {
-      return 'Peso normal';
-    } else if (imc() < 29.9) {
-      return 'Sobrepeso';
-    } else if (imc() < 34.9) {
-      return 'Obesidade grau 1';
-    } else if (imc() < 39.9) {
-      return 'Obesidade grau 2';
-    } else {
-      return 'Obesidade grau 3';
-    }
-  }
-
-  String toJSON() {
-    return '''
-    {
-      "nome": "$nome",
-      "idade": $idade,
-      "altura": $altura,
-      "peso": $peso,
-      "avatar": "$avatar"
-    }
-    ''';
-  }
-}
-```
-- ./repositories/pessoa_repository.dart
-```dart
-import 'package:listadetalhes/models/pessoa.dart';
-
-class PessoaRepository {
-  static List<Pessoa> tabela = [
-    Pessoa('Marcela Silva', 44, 1.75, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli1.png'),
-    Pessoa('João da Silva', 33, 1.80, 80.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli2.png'),
-    Pessoa('Maria da Silva', 22, 1.65, 44.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli3.png'),
-    Pessoa('Ana da Silva', 55, 1.70, 110.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli4.png'),
-    Pessoa('José da Silva', 66, 1.60, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli5.png'),
-    Pessoa('Andrea da Silva', 77, 1.90, 90.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli6.png'),
-    Pessoa('Paulo da Silva', 88, 1.75, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli7.png'),
-    Pessoa('Mariana da Silva', 99, 1.75, 70.0,'https://raw.githubusercontent.com/wellifabio/senai2023/main/2des/projetos/assets/avatares/cli8.png'),
-  ];
-
-  void add(Pessoa pessoa) {
-    tabela.add(pessoa);
-  }
-
-  void remove(Pessoa pessoa) {
-    tabela.remove(pessoa);
-  }
-
-  List<Pessoa> get pessoas => tabela;
-}
-```
 Esta lista é estática e as imagens estão remotas, acessadas através da URL.
 
 ## Atividades
@@ -153,11 +143,15 @@ Vamos replicar este aplicativo e criar outro como exercício com uma lista de pr
 # Aicionando interatividade a Lista
 Agora, vamos marcar em uma sublista os itens selecionados através de um longPress, para isso vamos voltar a trabalhar com os **estados** e o tipo da página passa a ser **StatefulWidget**<br>[Créditos: Assista esta vídeo aula no youtube](https://youtu.be/6aehTIdBnyQ?si=g7ZZaDHepd5TDbnx)
 
+<table>
+<tr>
+<td>
 - ./pages/pessoas_page.dart
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:listadetalhes/models/pessoa.dart';
-import 'package:listadetalhes/repositories/pessoa_repository.dart';
+import 'package:listadetalhes/repositories/pessoas_repository.dart';
 
 class PessoasPage extends StatefulWidget {
   const PessoasPage({super.key});
@@ -167,11 +161,11 @@ class PessoasPage extends StatefulWidget {
 }
 
 class _PessoasPageState extends State<PessoasPage> {
+  final tabela = PessoaRepository.tabela;
+  List<Pessoa> selecionadas = [];
+
   @override
   Widget build(BuildContext context) {
-    final tabela = PessoaRepository.tabela;
-    List<Pessoa> selecionadas = [];
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Pessoas'),
@@ -207,6 +201,7 @@ class _PessoasPageState extends State<PessoasPage> {
                     selecionadas.contains(tabela[indice])
                         ? selecionadas.remove(tabela[indice])
                         : selecionadas.add(tabela[indice]);
+                    // print(selecionadas.length);
                   })
                 },
               );
@@ -216,5 +211,9 @@ class _PessoasPageState extends State<PessoasPage> {
             itemCount: tabela.length));
   }
 }
-
 ```
+</td>
+<td>
+![Imagem3](./print3.png)
+</td>
+<tr>
