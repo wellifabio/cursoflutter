@@ -18,6 +18,8 @@
 flutter doctor
 ```
 
+## [Video aula - Filipe Deschamps](https://www.youtube.com/watch?v=J4BVaXkwmM8)
+
 ## Iniciando um novo projeto
 Com o ambiente instalado
 - 1 Crie uma workspace (Pasta onde armazenará seus projetos) e abra com VsCode
